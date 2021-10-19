@@ -40,8 +40,6 @@
 </template>
 
 <script>
-    import {eventBus} from '@/main'
-
     export default {
         data() {
             return {
@@ -95,7 +93,8 @@
                 })
             },
             submitAnime() {
-                eventBus.$emit('saveAnime', this.anime);
+                console.log('1');
+                this.$emit('saveAnime', this.anime);
             },
             setMessage(response) {
                 if(this.$route.name === "Add Anime") {

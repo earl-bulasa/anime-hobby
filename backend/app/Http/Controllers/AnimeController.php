@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Anime;
 use App\Models\ThemeSong;
 use GuzzleHttp\Client;
+use DB;
 
 class AnimeController extends Controller
 {
@@ -155,6 +156,8 @@ class AnimeController extends Controller
     {
         $animes = Anime::select('id', 'myanimelist_id', 'title', 'description')
             ->where($request->attribute, 'like', '%'.$request->text.'%')->get();
+        // $animes = Anime::select('id', 'myanimelist_id', 'title', 'description')
+        //     ->where(DB::raw('lower('.$request->attribute.')'), 'like', '%'.strtolower($request->text).'%')->get();
         return response()->json(['animes' => $animes], 200);
     }
 

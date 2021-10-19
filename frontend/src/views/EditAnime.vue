@@ -1,26 +1,21 @@
 <template>
     <div class="add-anime">
-        <AnimeForm />
+        <AnimeForm @saveAnime="saveAnime" />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import AnimeForm from '@/components/AnimeForm.vue'
-import {eventBus} from '@/main'
 
 export default {
     name: 'EditAnime',
     components: {
         AnimeForm
     },
-    created() {
-        eventBus.$on('saveAnime', (anime) => {
-            this.saveAnime(anime);
-        });
-    },
     methods: {
         saveAnime(anime) {
+            console.log('update', anime);
             this.axios.patch('http://localhost:8000/api/anime/' + this.$route.params.anime, anime).then((response) => {
                 console.log(response.data);
                 this.$emit('setMessage', response.data);

@@ -21,7 +21,7 @@
             <b-card-text style="text-align: left">
                 <b-col sm="12" class="card-top">
                     <b-button variant="outline-primary" class="mb-2" to="/add-anime">Add Anime</b-button>
-                    <SearchAnime />
+                    <SearchAnime @searchAnime="getAnimes" />
                 </b-col>
                 
                 <b-table sticky-header :fields="fields" responsive="sm" :items="items" outlined>
@@ -48,7 +48,6 @@
 
 <script>
     import SearchAnime from '@/components/SearchAnime.vue'
-    import {eventBus} from '@/main'
 
     export default {
         data() {
@@ -89,11 +88,6 @@
         },
         components: {
             SearchAnime
-        },
-        created() {
-            eventBus.$on('searchAnime', (search) => {
-                this.getAnimes(search);
-            });
         },
         methods: {
             getAnimes(search) {

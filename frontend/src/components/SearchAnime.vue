@@ -7,7 +7,6 @@
 </template>
 
 <script>
-    import {eventBus} from '@/main'
 
     export default {
         data() {
@@ -38,7 +37,7 @@
         },
         methods: {
             searchAnime() {
-                eventBus.$emit('searchAnime', this.search);
+                this.$emit('searchAnime', this.search);
             }
         }
     }

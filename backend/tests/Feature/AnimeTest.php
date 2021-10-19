@@ -33,19 +33,13 @@ class AnimeTest extends TestCase
 
     public function testShow()
     {
-        $response = $this->get('/api/anime/1');
-        $response->assertStatus(200);
-    }
-
-    public function testList()
-    {
-        $response = $this->get('/api/anime/list');
+        $response = $this->get('/api/anime/18');
         $response->assertStatus(200);
     }
 
     public function testDelete()
     {
-        $response = $this->delete('/api/anime/8');
+        $response = $this->delete('/api/anime/34');
         $response->assertStatus(200);
     }
 }
