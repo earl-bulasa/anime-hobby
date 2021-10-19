@@ -8,7 +8,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Home'
+    }
   },
   {
     path: '/add-anime',
@@ -16,7 +19,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddAnime.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/AddAnime.vue'),
+    meta: {
+      title: 'Add Anime'
+    }
   },
   {
     path: '/edit-anime/:anime',
@@ -24,7 +30,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditAnime.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditAnime.vue'),
+    meta: {
+      title: 'Edit Anime'
+    }
   },
   {
     path: '/view-anime/:anime',
@@ -32,7 +41,10 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ViewAnime.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ViewAnime.vue'),
+    meta: {
+      title: 'View Anime'
+    }
   }
 ]
 
@@ -40,6 +52,11 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 
 export default router
